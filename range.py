@@ -38,14 +38,11 @@ def add_range_selector(layout, axis_name='xaxis', ranges=None, default=None):
                 label=range,
                 step=step,
                 stepmode='backward')
-    axis.setdefault('rangeselector', dict(
-        buttons=[make_button(r) for r in ranges]
-    ))
+    axis.setdefault('rangeselector', dict(buttons=[make_button(r) for r in ranges]))
     if default is not None and default != 'all':
         end_date = datetime.datetime.today()
         if default.lower() == 'ytd':
             start_date = datetime.date(end_date.year, 1, 1)
-            # start_date = end_date - dateutil.relativedelta.relativedelta(years=1)
         else:
             (count, step) = range_split(default)
             step = step_map[step] + 's'  # relativedelta needs plurals
